@@ -10,7 +10,7 @@ Completar el archivo de inventario con los datos de conexión del host y crear u
 
 ```ini
 [stapp02]
-stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_password='Am3ric@' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_password='xxxxx' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ```
 
 **Desglose del inventory:**

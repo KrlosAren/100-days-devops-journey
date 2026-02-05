@@ -39,6 +39,55 @@ spec:
 
 **`spec.template`**: Es la plantilla del Pod que el Deployment usará para crear réplicas. Tiene la misma estructura que un Pod (`metadata` y `spec`), pero se define dentro del Deployment.
 
+### ¿Se necesita crear un Pod antes de crear un Deployment?
+
+No. El Deployment no requiere que exista un Pod previamente. Cuando se aplica el manifiesto, Kubernetes crea toda la cadena de forma automática:
+
+```
+Deployment → crea ReplicaSet → crea Pod(s)
+```
+
+La sección `spec.template` dentro del Deployment **es** la definición del Pod embebida. Comparando con el Pod directo del día 1:
+
+```yaml
+# Pod directo (día 1)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-httpd
+  labels:
+    app: httpd_app
+spec:
+  containers:
+    - name: httpd-container
+      image: httpd:latest
+```
+
+```yaml
+# Deployment (día 2) - el Pod va dentro de template
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd
+  template:          # ← desde aquí es prácticamente un Pod spec
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+        - name: httpd
+          image: httpd:latest
+```
+
+La diferencia es que el Pod del día 1 es un recurso independiente que nadie gestiona (si muere, no se recrea). El Pod dentro del Deployment es gestionado: el ReplicaSet se encarga de mantener el número de réplicas y recrearlo si falla.
+
+En la práctica, crear Pods directos casi no se usa en producción. Lo normal es siempre usar un controlador como Deployment, StatefulSet o DaemonSet, que llevan el Pod spec embebido en su `template`.
+
 ### Diferencia entre Pod y Deployment
 
 | Característica | Pod | Deployment |

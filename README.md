@@ -10,23 +10,45 @@ Reto personal de 100 días para aprender y practicar DevOps. Cada día se docume
 4. Registrar problemas encontrados y sus soluciones
 5. Cada día se guarda en `days/day-XX/` con su propio `README.md`
 
-## Progreso
+## Progreso - DevOps General
 
 | Día | Tema | Estado |
 |-----|------|--------|
 | [Día 01](days/day-01/README.md) | Crear usuarios de servicio sin shell interactiva | Completado |
+
+## Progreso - Kubernetes
+
+| Día | Tema | Estado |
+|-----|------|--------|
+| [Día 01](kubernetes-journey/days/day-01/README.md) | Crear un Pod en Kubernetes | Completado |
+
+## Progreso - Ansible
+
+| Día | Tema | Estado |
+|-----|------|--------|
+| [Día 01](ansible-journey/days/day-01/README.md) | Crear un archivo vacío con Ansible | Completado |
 
 ## Estructura del repositorio
 
 ```
 100-days-devops-journey/
 ├── README.md
-└── days/
+├── days/
+│   ├── template.md
+│   └── day-XX/
+│       └── README.md
+├── kubernetes-journey/
+│   ├── template.md
+│   └── days/
+│       └── day-XX/
+│           └── README.md
+└── ansible-journey/
     ├── template.md
-    └── day-XX/
-        └── README.md
+    └── days/
+        └── day-XX/
+            └── README.md
 ```
 
-- Cada día tiene su propia carpeta dentro de `days/`
+- Cada journey tiene su propia carpeta con la misma estructura de `days/`
 - Los scripts o archivos de código del día se guardan junto al README en la misma carpeta
-- Se usa `days/template.md` como plantilla para crear nuevos días
+- Se usa `template.md` de cada journey como plantilla para crear nuevos días
